@@ -16,5 +16,5 @@ spec:
             backend:
               service:
                 name: node-js-svc
-                port:
+                port:  
                   number: 30001
