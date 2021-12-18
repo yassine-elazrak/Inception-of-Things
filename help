@@ -19,3 +19,7 @@
 ###kubect logs -n argocd -c argocd-server
 
 # kubectl exec nginx-ingress-1167843297-40nbm -it bash
+## kubectl port-forward svc/node-js-svc  44444:3000
+
+
+##sudo kubectl wait --for=condition=Ready pods --all -n argocd
