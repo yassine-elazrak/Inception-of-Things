@@ -14,3 +14,8 @@
 ##cmd 
 # kubectl  get all -n argocd
 #https://www.techmanyu.com/setup-a-gitops-deployment-model-on-your-local-development-environment-with-k3s-k3d-and-argocd-4be0f4f30820
+
+##kubectl describe ingress
+###kubect logs -n argocd -c argocd-server
+
+# kubectl exec nginx-ingress-1167843297-40nbm -it bash
