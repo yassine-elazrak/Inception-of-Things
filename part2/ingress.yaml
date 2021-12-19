@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: traefik
+
+spec:
+  rules:
+    - host: mypussys.net
+      http:
+        paths:
+          - path: /
+            pathType: Exact
+            backend:
+              service:
+                name:  hellok3s-svc
+                port:
+                  number: 4567
+          - path: /
+            pathType: Exact
+            backend:
+              service:
+                name:  service1
+                port:
+                  number: 80
