@@ -35,10 +35,10 @@ spec:
         description: Application is a definition of Application resource.
         properties:
           apiVersion:
-            description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
             type: string
           kind:
-            description: 'Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
             type: string
           metadata:
             type: object
@@ -191,7 +191,7 @@ spec:
                           fileParameters:
                             description: FileParameters are file parameters to the helm template
                             items:
-                              description: HelmFileParameter is a file parameter that's passed to helm template during manifest generation
+                              description: HelmFileParameter is a file parameter that"s passed to helm template during manifest generation
                               properties:
                                 name:
                                   description: Name is the name of the Helm parameter
@@ -204,7 +204,7 @@ spec:
                           parameters:
                             description: Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
                             items:
-                              description: HelmParameter is a parameter that's passed to helm template during manifest generation
+                              description: HelmParameter is a parameter that"s passed to helm template during manifest generation
                               properties:
                                 forceString:
                                   description: ForceString determines whether to tell Helm to interpret booleans and numbers as strings
@@ -293,7 +293,7 @@ spec:
                           env:
                             description: Env is a list of environment variable entries
                             items:
-                              description: EnvEntry represents an entry in the application's environment
+                              description: EnvEntry represents an entry in the application"s environment
                               properties:
                                 name:
                                   description: Name is the name of the variable, usually expressed in uppercase
@@ -313,7 +313,7 @@ spec:
                         description: RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
                         type: string
                       targetRevision:
-                        description: TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
+                        description: TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart"s version.
                         type: string
                     required:
                     - repoURL
@@ -353,7 +353,7 @@ spec:
                     description: Name is an alternate way of specifying the target cluster by its symbolic name
                     type: string
                   namespace:
-                    description: Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
+                    description: Namespace specifies the target namespace for the application"s resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
                     type: string
                   server:
                     description: Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API
@@ -395,14 +395,14 @@ spec:
                   type: object
                 type: array
               project:
-                description: Project is a reference to the project this application belongs to. The empty string means that application belongs to the 'default' project.
+                description: Project is a reference to the project this application belongs to. The empty string means that application belongs to the "default" project.
                 type: string
               revisionHistoryLimit:
-                description: RevisionHistoryLimit limits the number of items kept in the application's revision history, which is used for informational purposes as well as for rollbacks to previous versions. This should only be changed in exceptional circumstances. Setting to zero will store no history. This will reduce storage used. Increasing will increase the space used to store the history, so we do not recommend increasing it. Default is 10.
+                description: RevisionHistoryLimit limits the number of items kept in the application"s revision history, which is used for informational purposes as well as for rollbacks to previous versions. This should only be changed in exceptional circumstances. Setting to zero will store no history. This will reduce storage used. Increasing will increase the space used to store the history, so we do not recommend increasing it. Default is 10.
                 format: int64
                 type: integer
               source:
-                description: Source is a reference to the location of the application's manifests or chart
+                description: Source is a reference to the location of the application"s manifests or chart
                 properties:
                   chart:
                     description: Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.
@@ -467,7 +467,7 @@ spec:
                       fileParameters:
                         description: FileParameters are file parameters to the helm template
                         items:
-                          description: HelmFileParameter is a file parameter that's passed to helm template during manifest generation
+                          description: HelmFileParameter is a file parameter that"s passed to helm template during manifest generation
                           properties:
                             name:
                               description: Name is the name of the Helm parameter
@@ -480,7 +480,7 @@ spec:
                       parameters:
                         description: Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
                         items:
-                          description: HelmParameter is a parameter that's passed to helm template during manifest generation
+                          description: HelmParameter is a parameter that"s passed to helm template during manifest generation
                           properties:
                             forceString:
                               description: ForceString determines whether to tell Helm to interpret booleans and numbers as strings
@@ -569,7 +569,7 @@ spec:
                       env:
                         description: Env is a list of environment variable entries
                         items:
-                          description: EnvEntry represents an entry in the application's environment
+                          description: EnvEntry represents an entry in the application"s environment
                           properties:
                             name:
                               description: Name is the name of the variable, usually expressed in uppercase
@@ -589,7 +589,7 @@ spec:
                     description: RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
                     type: string
                   targetRevision:
-                    description: TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
+                    description: TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart"s version.
                     type: string
                 required:
                 - repoURL
@@ -601,13 +601,13 @@ spec:
                     description: Automated will keep an application synced to the target revision
                     properties:
                       allowEmpty:
-                        description: 'AllowEmpty allows apps have zero live resources (default: false)'
+                        description: "AllowEmpty allows apps have zero live resources (default: false)"
                         type: boolean
                       prune:
-                        description: 'Prune specifies whether to delete resources from the cluster that are not found in the sources anymore as part of automated sync (default: false)'
+                        description: "Prune specifies whether to delete resources from the cluster that are not found in the sources anymore as part of automated sync (default: false)"
                         type: boolean
                       selfHeal:
-                        description: 'SelfHeal specifes whether to revert resources back to their desired state upon modification in the cluster (default: false)'
+                        description: "SelfHeal specifes whether to revert resources back to their desired state upon modification in the cluster (default: false)"
                         type: boolean
                     type: object
                   retry:
@@ -667,7 +667,7 @@ spec:
                   type: object
                 type: array
               health:
-                description: Health contains information about the application's current health status
+                description: Health contains information about the application"s current health status
                 properties:
                   message:
                     description: Message is a human-readable informational message describing the health status
@@ -677,7 +677,7 @@ spec:
                     type: string
                 type: object
               history:
-                description: History contains information about the application's sync history
+                description: History contains information about the application"s sync history
                 items:
                   description: RevisionHistory contains history information about a previous sync
                   properties:
@@ -762,7 +762,7 @@ spec:
                             fileParameters:
                               description: FileParameters are file parameters to the helm template
                               items:
-                                description: HelmFileParameter is a file parameter that's passed to helm template during manifest generation
+                                description: HelmFileParameter is a file parameter that"s passed to helm template during manifest generation
                                 properties:
                                   name:
                                     description: Name is the name of the Helm parameter
@@ -775,7 +775,7 @@ spec:
                             parameters:
                               description: Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
                               items:
-                                description: HelmParameter is a parameter that's passed to helm template during manifest generation
+                                description: HelmParameter is a parameter that"s passed to helm template during manifest generation
                                 properties:
                                   forceString:
                                     description: ForceString determines whether to tell Helm to interpret booleans and numbers as strings
@@ -864,7 +864,7 @@ spec:
                             env:
                               description: Env is a list of environment variable entries
                               items:
-                                description: EnvEntry represents an entry in the application's environment
+                                description: EnvEntry represents an entry in the application"s environment
                                 properties:
                                   name:
                                     description: Name is the name of the variable, usually expressed in uppercase
@@ -884,7 +884,7 @@ spec:
                           description: RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
                           type: string
                         targetRevision:
-                          description: TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
+                          description: TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart"s version.
                           type: string
                       required:
                       - repoURL
@@ -896,7 +896,7 @@ spec:
                   type: object
                 type: array
               observedAt:
-                description: 'ObservedAt indicates when the application state was updated without querying latest git state Deprecated: controller no longer updates ObservedAt field'
+                description: "ObservedAt indicates when the application state was updated without querying latest git state Deprecated: controller no longer updates ObservedAt field"
                 format: date-time
                 type: string
               operationState:
@@ -1058,7 +1058,7 @@ spec:
                                   fileParameters:
                                     description: FileParameters are file parameters to the helm template
                                     items:
-                                      description: HelmFileParameter is a file parameter that's passed to helm template during manifest generation
+                                      description: HelmFileParameter is a file parameter that"s passed to helm template during manifest generation
                                       properties:
                                         name:
                                           description: Name is the name of the Helm parameter
@@ -1071,7 +1071,7 @@ spec:
                                   parameters:
                                     description: Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
                                     items:
-                                      description: HelmParameter is a parameter that's passed to helm template during manifest generation
+                                      description: HelmParameter is a parameter that"s passed to helm template during manifest generation
                                       properties:
                                         forceString:
                                           description: ForceString determines whether to tell Helm to interpret booleans and numbers as strings
@@ -1160,7 +1160,7 @@ spec:
                                   env:
                                     description: Env is a list of environment variable entries
                                     items:
-                                      description: EnvEntry represents an entry in the application's environment
+                                      description: EnvEntry represents an entry in the application"s environment
                                       properties:
                                         name:
                                           description: Name is the name of the variable, usually expressed in uppercase
@@ -1180,7 +1180,7 @@ spec:
                                 description: RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
                                 type: string
                               targetRevision:
-                                description: TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
+                                description: TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart"s version.
                                 type: string
                             required:
                             - repoURL
@@ -1336,7 +1336,7 @@ spec:
                               fileParameters:
                                 description: FileParameters are file parameters to the helm template
                                 items:
-                                  description: HelmFileParameter is a file parameter that's passed to helm template during manifest generation
+                                  description: HelmFileParameter is a file parameter that"s passed to helm template during manifest generation
                                   properties:
                                     name:
                                       description: Name is the name of the Helm parameter
@@ -1349,7 +1349,7 @@ spec:
                               parameters:
                                 description: Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
                                 items:
-                                  description: HelmParameter is a parameter that's passed to helm template during manifest generation
+                                  description: HelmParameter is a parameter that"s passed to helm template during manifest generation
                                   properties:
                                     forceString:
                                       description: ForceString determines whether to tell Helm to interpret booleans and numbers as strings
@@ -1438,7 +1438,7 @@ spec:
                               env:
                                 description: Env is a list of environment variable entries
                                 items:
-                                  description: EnvEntry represents an entry in the application's environment
+                                  description: EnvEntry represents an entry in the application"s environment
                                   properties:
                                     name:
                                       description: Name is the name of the variable, usually expressed in uppercase
@@ -1458,7 +1458,7 @@ spec:
                             description: RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
                             type: string
                           targetRevision:
-                            description: TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
+                            description: TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart"s version.
                             type: string
                         required:
                         - repoURL
@@ -1478,7 +1478,7 @@ spec:
               resources:
                 description: Resources is a list of Kubernetes resources managed by this application
                 items:
-                  description: 'ResourceStatus holds the current sync and health status of a resource TODO: describe members of this type'
+                  description: "ResourceStatus holds the current sync and health status of a resource TODO: describe members of this type"
                   properties:
                     group:
                       type: string
@@ -1527,26 +1527,26 @@ spec:
                     type: array
                 type: object
               sync:
-                description: Sync contains information about the application's current sync status
+                description: Sync contains information about the application"s current sync status
                 properties:
                   comparedTo:
                     description: ComparedTo contains information about what has been compared
                     properties:
                       destination:
-                        description: Destination is a reference to the application's destination used for comparison
+                        description: Destination is a reference to the application"s destination used for comparison
                         properties:
                           name:
                             description: Name is an alternate way of specifying the target cluster by its symbolic name
                             type: string
                           namespace:
-                            description: Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
+                            description: Namespace specifies the target namespace for the application"s resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
                             type: string
                           server:
                             description: Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API
                             type: string
                         type: object
                       source:
-                        description: Source is a reference to the application's source used for comparison
+                        description: Source is a reference to the application"s source used for comparison
                         properties:
                           chart:
                             description: Chart is a Helm chart name, and must be specified for applications sourced from a Helm repo.
@@ -1611,7 +1611,7 @@ spec:
                               fileParameters:
                                 description: FileParameters are file parameters to the helm template
                                 items:
-                                  description: HelmFileParameter is a file parameter that's passed to helm template during manifest generation
+                                  description: HelmFileParameter is a file parameter that"s passed to helm template during manifest generation
                                   properties:
                                     name:
                                       description: Name is the name of the Helm parameter
@@ -1624,7 +1624,7 @@ spec:
                               parameters:
                                 description: Parameters is a list of Helm parameters which are passed to the helm template command upon manifest generation
                                 items:
-                                  description: HelmParameter is a parameter that's passed to helm template during manifest generation
+                                  description: HelmParameter is a parameter that"s passed to helm template during manifest generation
                                   properties:
                                     forceString:
                                       description: ForceString determines whether to tell Helm to interpret booleans and numbers as strings
@@ -1713,7 +1713,7 @@ spec:
                               env:
                                 description: Env is a list of environment variable entries
                                 items:
-                                  description: EnvEntry represents an entry in the application's environment
+                                  description: EnvEntry represents an entry in the application"s environment
                                   properties:
                                     name:
                                       description: Name is the name of the variable, usually expressed in uppercase
@@ -1733,7 +1733,7 @@ spec:
                             description: RepoURL is the URL to the repository (Git or Helm) that contains the application manifests
                             type: string
                           targetRevision:
-                            description: TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart's version.
+                            description: TargetRevision defines the revision of the source to sync the application to. In case of Git, this can be commit, tag, or branch. If omitted, will equal to HEAD. In case of Helm, this is a semver tag for the Chart"s version.
                             type: string
                         required:
                         - repoURL
@@ -1782,13 +1782,13 @@ spec:
   - name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: 'AppProject provides a logical grouping of applications, providing controls for: * where the apps may deploy to (cluster whitelist) * what may be deployed (repository whitelist, resource whitelist/blacklist) * who can access these applications (roles, OIDC group claims bindings) * and what they can do (RBAC policies) * automation access to these roles (JWT tokens)'
+        description: "AppProject provides a logical grouping of applications, providing controls for: * where the apps may deploy to (cluster whitelist) * what may be deployed (repository whitelist, resource whitelist/blacklist) * who can access these applications (roles, OIDC group claims bindings) * and what they can do (RBAC policies) * automation access to these roles (JWT tokens)"
         properties:
           apiVersion:
-            description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
             type: string
           kind:
-            description: 'Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
             type: string
           metadata:
             type: object
@@ -1829,13 +1829,13 @@ spec:
               destinations:
                 description: Destinations contains list of destinations available for deployment
                 items:
-                  description: ApplicationDestination holds information about the application's destination
+                  description: ApplicationDestination holds information about the application"s destination
                   properties:
                     name:
                       description: Name is an alternate way of specifying the target cluster by its symbolic name
                       type: string
                     namespace:
-                      description: Namespace specifies the target namespace for the application's resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
+                      description: Namespace specifies the target namespace for the application"s resources. The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
                       type: string
                     server:
                       description: Server specifies the URL of the target cluster and must be set to the Kubernetes control plane API
@@ -2183,15 +2183,15 @@ metadata:
   name: argocd-application-controller
 rules:
 - apiGroups:
-  - '*'
+  - "*"
   resources:
-  - '*'
+  - "*"
   verbs:
-  - '*'
+  - "*"
 - nonResourceURLs:
-  - '*'
+  - "*"
   verbs:
-  - '*'
+  - "*"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -2203,9 +2203,9 @@ metadata:
   name: argocd-server
 rules:
 - apiGroups:
-  - '*'
+  - "*"
   resources:
-  - '*'
+  - "*"
   verbs:
   - delete
   - get
@@ -2738,12 +2738,9 @@ spec:
       containers:
       - command:
         - argocd-server
+        - --insecure
         - --staticassets
         - /shared/app
-        # Add insecure and argocd as rootpath
-        - --insecure
-        - --rootpath
-        - /argocd
         image: quay.io/argoproj/argocd:v2.0.1
         imagePullPolicy: Always
         livenessProbe:
