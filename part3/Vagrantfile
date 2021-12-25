@@ -1,7 +1,8 @@
 server_ip = "192.168.42.110"
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "centos/8"
+  config.vm.box = "ubuntu/bionic64"
+  # "centos/8"
 
   config.vm.define "k", primary: true do |server|
     server.vm.network "private_network", ip: server_ip
