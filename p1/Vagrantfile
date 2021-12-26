@@ -1,0 +1,53 @@
+server_ip = "192.168.42.110"
+
+agent_ip = "192.168.42.111"
+
+# --node-external-ip=#{server_ip}
+server_script = <<-SHELL
+export K3S_KUBECONFIG_MODE="644"
+export INSTALL_K3S_EXEC="--bind-address=#{server_ip} --flannel-iface=eth1"
+curl -sfL https://get.k3s.io | sh - 
+echo $(sudo cat /var/lib/rancher/k3s/server/token) > token
+SHELL
+
+agent_script = <<-SHELL
+
+export K3S_TOKEN=$(cat /vagrant/token)
+export K3S_URL=https://#{server_ip}:6443
+export INSTALL_K3S_EXEC="--flannel-iface=eth1"
+curl -sfL https://get.k3s.io | sh -
+SHELL
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "centos/8"
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "1024"
+    vb.cpus = "1"
+  end
+  
+  config.vm.define "ymoukhliS", primary: true do |server|
+    server.vm.network "private_network", ip: server_ip
+    server.vm.hostname = "ymoukhliS"
+    server.vm.provision "shell", :inline => server_script
+    server.trigger.before :up do |trigger|
+      trigger.info = "installing vagrant scp"
+      trigger.run = {inline: "vagrant plugin install vagrant-scp"}
+    end
+    server.trigger.after :up do |trigger|
+      trigger.info = "coppy token"
+      trigger.run = {inline: "vagrant scp ymoukhliS:/home/vagrant/token ."}
+    end
+  end
+
+  config.vm.define "ymoukhliSW", primary: true do |agent|
+    agent.vm.network "private_network", ip: agent_ip
+    agent.vm.hostname = "ymoukhliSW"
+    agent.vm.provision "agentShell", :inline => agent_script, type: "shell"
+    agent.trigger.after :up do |trigger|
+      trigger.info = "delete token"
+      trigger.run = {inline: "rm ./token"}
+    end
+  end
+
+
+end
