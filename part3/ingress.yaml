@@ -1,9 +1,15 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: argocd 
+
+---
 
 
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: whoami
+  name: argocd-ingress
   namespace: argocd
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
