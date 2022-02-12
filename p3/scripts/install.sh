@@ -20,3 +20,7 @@ sudo kubectl wait --for=condition=Ready pods --all -n argocd
 ## sudo  k3d cluster delete --all
 ##sudo  k3d cluster delete --all
 
+#get password
+#kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+
+
