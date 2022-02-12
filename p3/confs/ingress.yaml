@@ -1,17 +1,3 @@
-# kind: Namespace
-# apiVersion: v1
-# metadata:
-#   name: argocd 
-
-# ---
-
-# kind: Namespace
-# apiVersion: v1
-# metadata:
-#   name: argocd
-
----
-
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
