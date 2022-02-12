@@ -7,7 +7,7 @@ spec:
   source:
     repoURL: https://github.com/yassine-elazrak/repo-k3d.git
     targetRevision: HEAD
-    path: repo-k3d
+    path: k3d
   destination:
     server: https://kubernetes.default.svc
     namespace: dev
