@@ -18,4 +18,3 @@ echo "source <(k3d completion bash)" >> ~/.bashrc
 
 echo "..::OK::.."
 
-
