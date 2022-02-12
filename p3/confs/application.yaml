@@ -1,15 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-app
+  name: argocd-application
 spec:
-  project: development
+  project: default
   source:
-    repoURL: https://github.com/yassineazrak/Inception-of-Things.git
+    repoURL: https://github.com/yassine-elazrak/repo-k3d.git
     targetRevision: HEAD
-    path: manifests
-    directory:
-      recurse: true
+    path: repo-k3d
   destination:
     server: https://kubernetes.default.svc
     namespace: dev
@@ -17,3 +15,4 @@ spec:
     automated:
       prune: false
       selfHeal: true
+#

@@ -10,7 +10,7 @@
 
 #!/bin/bash
 
-sudo k3d cluster create dev-cluster --api-port 6443 -p 8080:80@loadbalancer --agents 2 --wait
+sudo k3d cluster create dev-cluster --api-port 6443 -p 80:80@loadbalancer --agents 2 --wait
 
 sudo kubectl create namespace argocd
 sudo kubectl create namespace dev
