@@ -1,0 +1,69 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: whoami
+
+---
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-deployement
+  namespace: whoami
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flask-pod
+  template:
+    metadata:
+      labels:
+        app: flask-pod
+    spec:
+      containers:
+      - image: digitalocean/flask-helloworld
+        name: flask-container
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-js-deployement
+  namespace: whoami
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-js-pod
+  template:
+    metadata:
+      labels:
+        app: node-js-pod
+    spec:
+      containers:
+      - image: heroku/nodejs-hello-world
+        name: node-js-container
+
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: whoami
+  namespace: whoami
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: traefiklabs
+  template:
+    metadata:
+      labels:
+        app: traefiklabs
+    spec:
+      containers:
+        - name: whoami
+          image: traefik/whoami
+          ports:
+            - containerPort: 80

@@ -1,41 +1,25 @@
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: hello-ingress
-#   annotations:
-#     # We are defining this annotation to prevent nginx
-#     # from redirecting requests to `https` for now
-#     nginx.ingress.kubernetes.io/ssl-redirect: "false"
-# spec:
-#   rules:
-#     - host: nginx.local.com
-#       http:
-#         paths:
-#           - path: /
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: node-js-svc
-#                 port:  
-#                   number: 30001
 
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
-  name: whoami
-  namespace: whoami
-  annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: web
-
+  name: ingress-route
+  namespace: default
 spec:
-  rules:
-    - http:
-        paths:
-          - path: /bar
-            pathType: Prefix
-           
-            backend:
-              service:
-                name: whoami-svc
-                port:
-                  number: 80
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`app1.com`)
+      kind: Rule
+      services:
+        - name: app-one
+          port: 5000
+    - match: Host(`app2.com`)
+      kind: Rule
+      services:
+        - name: app-two
+          port: 80
+    - match: Host(`app3.com`)
+      kind: Rule
+      services:
+        - name: app-three
+          port: 3000
