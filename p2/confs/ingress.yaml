@@ -21,4 +21,4 @@ spec:
       kind: Rule
       services:
         - name: app-three
-          port: 3000
+          port: 8888

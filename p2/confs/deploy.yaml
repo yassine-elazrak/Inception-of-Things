@@ -51,5 +51,7 @@ spec:
         app: app-three
     spec:
       containers:
-      - image: heroku/nodejs-hello-world
-        name: node-js-container
+      - name: playground
+        image: "wil42/playground:v2"
+        ports:
+          - containerPort: 8888

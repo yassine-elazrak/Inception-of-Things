@@ -31,4 +31,4 @@ spec:
   selector:
     app: app-three
   ports:
-  - port: 3000
+  - port: 8888

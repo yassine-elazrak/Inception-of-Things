@@ -1,59 +1,39 @@
-server_ip = "192.168.42.110"
+require 'yaml'
 
-agent_ip = "192.168.42.111"
-
-
-server_script = <<-SHELL
-export K3S_KUBECONFIG_MODE="644"
-export INSTALL_K3S_EXEC="--bind-address=#{server_ip} --node-external-ip=#{server_ip} --flannel-iface=eth1"
-curl -sfL https://get.k3s.io | sh - 
-# echo "Sleeping for 5 seconds to wait for k3s to start"
-# sleep 5
-echo $(sudo cat /var/lib/rancher/k3s/server/token) > token
-SHELL
-
-agent_script = <<-SHELL
-export K3S_TOKEN=$(cat /home/vagrant/token)
-export K3S_URL=https://#{server_ip}:6443
-export INSTALL_K3S_EXEC="--flannel-iface=eth1"
-curl -sfL https://get.k3s.io | sh -
-SHELL
+current_dir = File.dirname(File.expand_path(__FILE__))
+setting = YAML.load_file("#{current_dir}/config.yaml")
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "generic/centos7"
-  config.vm.provider "virtualbox" do |vb|
-    vb.memory = "1024"
-    vb.cpus = "1"
-  end
-  config.trigger.after :all do |trigger|
-    trigger.info = "delete token"
-    trigger.run = {inline: "rm ./token"}
-  end
-  
-  config.vm.define "ymoukhliS", primary: true do |server|
-    server.vm.network "private_network", ip: server_ip
-    server.vm.hostname = "ymoukhliS"
-    server.vm.provision "shell", :inline => server_script
-    server.trigger.before :up do |trigger|
-      trigger.info = "install vagrant-scp"
-      trigger.run = {inline: "vagrant plugin install vagrant-scp "}
-    end
-    server.trigger.after :up do |trigger|
-      trigger.info = "coppy token"
-      trigger.run = {inline: "vagrant scp ymoukhliS:/home/vagrant/token ."}
-    end
-  end
+	config.vm.box = "generic/centos8"
 
-  config.vm.define "ymoukhliSW", primary: true do |agent|
-    agent.vm.network "private_network", ip: agent_ip
-    agent.vm.hostname = "ymoukhliSW"
-    agent.trigger.before :up do |trigger|
-      trigger.info = "coppy token"
-      trigger.run = {inline: "vagrant scp ./token ymoukhliSW:/home/vagrant/"}
-    end
-    agent.vm.provision "agentShell", :inline => agent_script, type: "shell"
-  end
-  
+	config.vm.synced_folder setting["shared_host_folder"], setting["shared_guest_folder"], SharedFoldersEnableSymlinksCreate: true
 
+	config.vm.define "zchatouaS" do |w_conf|
+		w_conf.vm.hostname = setting["server"]["hostname"]
+		w_conf.vm.network  "private_network", ip: setting["server"]["ip"]
 
+		w_conf.vm.provider "virtualbox" do |vb|
+			vb.name = setting["server"]["vb_name"]
+			vb.memory = setting["server"]["memory"]
+			vb.cpus = setting["server"]["cpus"]
+			vb.customize  ["modifyvm", :id, "--natdnsproxy1", "off"]
+			vb.customize  ["modifyvm", :id, "--natdnshostresolver1", "off"]
+		end
+		w_conf.vm.provision "shell", path: "./scripts/server.sh", args: [setting["server"]["ip"]]
+		
+	end
+
+	config.vm.define "zchatouaSW" do |sw_conf|
+		sw_conf.vm.hostname = setting["worker"]["hostname"]
+		sw_conf.vm.network  "private_network", ip:  setting["worker"]["ip"]
+
+		sw_conf.vm.provider "virtualbox" do |vb|
+			vb.name = setting["worker"]["vb_name"]
+			vb.memory = setting["worker"]["memory"]
+			vb.cpus = setting["worker"]["cpus"]
+			vb.customize  ["modifyvm", :id, "--natdnsproxy1", "on"]
+			vb.customize  ["modifyvm", :id, "--natdnshostresolver1", "on"]
+		end
+		sw_conf.vm.provision "shell", path: "./scripts/worker.sh", args: [setting["server"]["ip"], setting["worker"]["ip"]]
+	end
 end

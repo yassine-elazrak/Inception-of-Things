@@ -1,0 +1,16 @@
+
+box: "generic/centos8"
+shared_host_folder: "./"
+shared_guest_folder: "/vagrant"
+server:
+  ip: 192.168.42.110
+  hostname: "Server"
+  vb_name: "zchatoua"
+  memory: 1024
+  cpus: 2
+worker:
+  ip: 192.168.42.111
+  hostname: "ServerWorker"
+  vb_name: "yelazrak"
+  memory: 1024
+  cpus: 2
