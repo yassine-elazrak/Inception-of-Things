@@ -4,6 +4,7 @@
 ##install docker
 sudo yum install -y docker
 sudo systemctl enable docker
+sudo systemctl restart  docker
 sudo setfacl -m user:$USER:rw /var/run/docker.sock
 
 ## Installing Kubectl
