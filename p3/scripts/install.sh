@@ -1,6 +1,6 @@
 
 #create cluster
- k3d cluster create yelazrakCluster  -p 8080:80@server:0 -p 8888:8888@server:0  --wait
+ k3d cluster create yelazrakCluster  -p 8080:80@server:0 -p 8888:8888@server:0 -p 8181:8181@server:0 --wait
 
 
 #create namespace argocd dev

@@ -5,5 +5,5 @@ server:
   ip: 192.168.42.110
   hostname: "yelazrakS"
   vb_name: "yelazrak"
-  memory: 2048
-  cpus: 2
+  memory:  5144
+  cpus: 4
