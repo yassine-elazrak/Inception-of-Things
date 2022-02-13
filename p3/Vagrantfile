@@ -4,9 +4,9 @@ current_dir = File.dirname(File.expand_path(__FILE__))
 setting = YAML.load_file("#{current_dir}/confs/config.yaml")
 
 Vagrant.configure("2") do |config|
-	config.vm.box = "generic/centos7"
+	config.vm.box = "generic/ubuntu1804"
 
-	config.vm.synced_folder setting["shared_host_folder"],setting["shared_guest_folder"], SharedFoldersEnableSymlinksCreate: true
+	# config.vm.synced_folder setting["shared_host_folder"],setting["shared_guest_folder"], SharedFoldersEnableSymlinksCreate: true
 
 	config.vm.define "yelazrakS" do |w_conf|
 		w_conf.vm.hostname = setting["server"]["hostname"]
