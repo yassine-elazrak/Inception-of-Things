@@ -5,7 +5,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/yassine-elazrak/repo-k3d.git
+    repoURL: https://github.com/yassine-elazrak/yelazrak.git
     targetRevision: HEAD
     path: k3d
   destination:
@@ -13,5 +13,5 @@ spec:
     namespace: dev
   syncPolicy:
     automated:
-      prune: false
+      prune: true
       selfHeal: true

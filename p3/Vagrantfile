@@ -1,13 +1,23 @@
-server_ip = "192.168.42.110"
+require 'yaml'
+
+current_dir = File.dirname(File.expand_path(__FILE__))
+setting = YAML.load_file("#{current_dir}/confs/config.yaml")
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "generic/centos7"
-  config.vm.define "yelazrakS", primary: true do |server|
-    server.vm.network "private_network", ip: server_ip
-    server.vm.hostname = "yelazrakS"
-    server.vm.provider "virtualbox" do |vb|
-      vb.memory = "2048"
-      vb.cpus = "2"
-    end
-  end
+	config.vm.box = "generic/centos7"
+
+	config.vm.synced_folder setting["shared_host_folder"],setting["shared_guest_folder"], SharedFoldersEnableSymlinksCreate: true
+
+	config.vm.define "yelazrakS" do |w_conf|
+		w_conf.vm.hostname = setting["server"]["hostname"]
+		w_conf.vm.network  "private_network", ip: setting["server"]["ip"]
+
+		w_conf.vm.provider "virtualbox" do |vb|
+			vb.name = setting["server"]["vb_name"]
+			vb.memory = setting["server"]["memory"]
+			vb.cpus = setting["server"]["cpus"]
+		end
+		w_conf.vm.provision "shell", path: "./scripts/server.sh", args: [setting["server"]["ip"]]
+		
+	end
 end
