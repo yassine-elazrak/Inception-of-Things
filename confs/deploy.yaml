@@ -16,8 +16,8 @@ spec:
       - image: digitalocean/flask-helloworld
         name: flask-container
 ---
-kind: Deployment
 apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: app-two
 spec:

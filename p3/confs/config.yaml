@@ -1,9 +1,0 @@
-box: "generic/centos8"
-shared_host_folder: "./"
-shared_guest_folder: "/vagrant"
-server:
-  ip: 192.168.42.110
-  hostname: "yelazrakS"
-  vb_name: "yelazrak"
-  memory:  5144
-  cpus: 4

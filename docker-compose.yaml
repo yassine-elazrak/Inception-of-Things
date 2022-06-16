@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  # certbot:
+  #   image: certbot/certbot
+  #   volumes:
+  #     - ./config/certbot/conf:/etc/letsencrypt
+  #     - ./config/certbot/www:/var/www/certbot
+  #   entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+  # webserver:
+  #   image: nginx:1.15
+  #   deploy:
+  #     replicas: 1
+  #     restart_policy:
+  #       condition: on-failure
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./config/webserver:/etc/nginx/conf.d
+  #     - ./config/certbot/conf:/etc/letsencrypt
+  #     - ./config/certbot/www:/var/www/certbot
+  #   env_file:
+  #     - config/environment/development.env
+  #   command: /bin/sh -c "envsubst '$${NGINX_SERVER_NAME},$${DOLLAR}' < /etc/nginx/conf.d/nginx.tmpl > /etc/nginx/nginx.conf && while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\""
+
+  app:
+    image: "wil42/playground:v2"  #688086362677.dkr.ecr.eu-west-3.amazonaws.com/app:latest
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "80:8888"
+    # volumes:
+    #   - ./config/app/config.json:/app/config.json
+    #   - ./config/app/config.py:/app/config.py
+    #   - ./config/app/configuration:/app/configuration
+    #   - ./data-pipelines/data:/data/
+    # env_file:
+    #   - ./config/environment/development.env
